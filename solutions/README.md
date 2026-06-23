@@ -33,8 +33,10 @@ Example: `solutions/01-arrays-and-hashing/0049-group-anagrams.py`.
 Each curated file carries, top to bottom:
 
 1. **Header comment** - problem name + LC number + pattern + list; solve date,
-   outcome (`solo` / `hint` / `looked-up`), and any **style notes** (naming /
-   PEP 8 slips in the typed solution, noted rather than silently fixed).
+   outcome (`solo` / `hint` / `looked-up`), a **`Raw:`** pointer to the verbatim
+   submission under `Data Structures & Algorithms/` (for re-solves, the latest
+   `submission-N.py`), and any **style notes** (naming / PEP 8 slips in the
+   typed solution, noted rather than silently fixed).
 2. **Optimal solution, active** - copied verbatim from the accepted submission
    so it stays a valid, runnable file and preserves what David actually typed.
 3. **Alternative implementations, commented** - every other instructive approach

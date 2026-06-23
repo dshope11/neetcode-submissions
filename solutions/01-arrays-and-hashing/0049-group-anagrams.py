@@ -1,5 +1,6 @@
 # Group Anagrams (LC 49) | Arrays & Hashing | Blind 75
 # Solved 2026-06-22 on neetcode.io | outcome: hint
+# Raw: Data Structures & Algorithms/anagram-groups/submission-0.py
 # Style: clean (snake_case, PEP 8 OK)
 #
 # Optimal active below (count-key, O(N*K) time / O(N*K) space, assumes a fixed

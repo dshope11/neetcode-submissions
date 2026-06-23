@@ -1,5 +1,6 @@
 # Valid Anagram (LC 242) | Arrays & Hashing | Blind 75
 # Solved 2026-06-21 on neetcode.io | outcome: solo
+# Raw: Data Structures & Algorithms/is-anagram/submission-0.py
 # Style notes (David's typed solution preserved as-is below):
 #   - Counter_s / Counter_t: capitalized like a class; PEP 8 wants snake_case
 #     (counter_s / counter_t) since these are dict variables, not types.
