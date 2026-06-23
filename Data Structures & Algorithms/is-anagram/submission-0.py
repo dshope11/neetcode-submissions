@@ -1,31 +1,22 @@
-# from collections import Counter
-
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        # return Counter(s) == Counter(t)
+        # Hand-rolled frequency maps: O(n) time, O(1) space (fixed 26-letter
+        # alphabet; O(k) for arbitrary Unicode). Length guard is a cheap bail.
         if len(s) != len(t):
             return False
-        Counter_s = {}
+        count_s = {}
         for letter in s:
-            if letter not in Counter_s:
-                Counter_s[letter] = 1
-            else: Counter_s[letter] += 1
-        Counter_t = {}
+            count_s[letter] = count_s.get(letter, 0) + 1
+        count_t = {}
         for letter in t:
-            if letter not in Counter_t:
-                Counter_t[letter] = 1
-            else: Counter_t[letter] += 1
-        
-        for k in Counter_s:
-            if k not in Counter_t:
-                return False
-            elif Counter_t[k] != Counter_s[k]:
-                return False
-        return True
+            count_t[letter] = count_t.get(letter, 0) + 1
+        return count_s == count_t
 
-        # # More concisely:
+        # Alternative - Counter equality: O(n) time, O(1)/O(k) space.
+        # Counter.__eq__ compares multisets directly; cleanest form.
+        # from collections import Counter
+        # return Counter(s) == Counter(t)
 
-        # for i in range(len(s)):
-        #     count_S[s[i]] = 1 + count_S.get(s[i], 0)
-        #     count_T[t[i]] = 1 + count_T.get(t[i], 0)
-        # return count_S == count_T
+        # Alternative - sort both, then compare: O(n log n) time, O(1) space
+        # (if sorted in place). Alphabet-agnostic, no auxiliary map.
+        # return sorted(s) == sorted(t)
