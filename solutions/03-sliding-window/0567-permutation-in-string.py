@@ -143,3 +143,54 @@ class Solution:
 #    O(1) space. The fixed-window slide (alt 2) is this with the per-window rebuild
 #    replaced by an incremental add/remove; the matches counter (active) then also
 #    removes the per-step compare.
+#
+# 4) Official NeetCode solution - same matches-counter idea as the accepted code,
+#    with two structural differences worth noting:
+#      * PRE-FILLS the first window: builds s1Count AND s2Count over the first
+#        len(s1) chars in one loop, then computes matches by comparing all 26 slots
+#        (the zip-compare init, vs the empty-window `s1Count.count(0)` init used
+#        above). The slide loop then starts at r = len(s1).
+#      * Checks `matches == 26` at the TOP of the loop (before mutating), so the
+#        first window is tested on entry; the trailing `return matches == 26`
+#        catches the final window after the loop ends. (The accepted version instead
+#        gates the check on `right >= len(s1) - 1` inside one unified loop.)
+#      * Uses `s1Count[index] + 1 == s2Count[index]` (post-increment arithmetic) to
+#        detect a newly-broken match instead of snapshotting the prior equality.
+#    O(n) time, O(1) space - identical complexity. NOTE: camelCase (s1Count, l, r)
+#    is NeetCode's house style, preserved verbatim as the official reference; it is
+#    NOT the snake_case this repo otherwise follows.
+#
+# class Solution:
+#     def checkInclusion(self, s1: str, s2: str) -> bool:
+#         if len(s1) > len(s2):
+#             return False
+#
+#         s1Count, s2Count = [0] * 26, [0] * 26
+#         for i in range(len(s1)):
+#             s1Count[ord(s1[i]) - ord('a')] += 1
+#             s2Count[ord(s2[i]) - ord('a')] += 1
+#
+#         matches = 0
+#         for i in range(26):
+#             matches += (1 if s1Count[i] == s2Count[i] else 0)
+#
+#         l = 0
+#         for r in range(len(s1), len(s2)):
+#             if matches == 26:
+#                 return True
+#
+#             index = ord(s2[r]) - ord('a')
+#             s2Count[index] += 1
+#             if s1Count[index] == s2Count[index]:
+#                 matches += 1
+#             elif s1Count[index] + 1 == s2Count[index]:
+#                 matches -= 1
+#
+#             index = ord(s2[l]) - ord('a')
+#             s2Count[index] -= 1
+#             if s1Count[index] == s2Count[index]:
+#                 matches += 1
+#             elif s1Count[index] - 1 == s2Count[index]:
+#                 matches -= 1
+#             l += 1
+#         return matches == 26
