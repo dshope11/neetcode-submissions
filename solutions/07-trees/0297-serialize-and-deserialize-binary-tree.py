@@ -6,7 +6,7 @@
 #          pre-order DFS that consumes tokens left-to-right via a self-advancing
 #          pointer, rebuilding the exact tree. The "N" null markers are what let
 #          a SINGLE pre-order pass reconstruct unambiguously.
-# Solved 2026-07-26 | outcome: solo
+# Solved 2026-07-26 | outcome: hint
 #
 # Raw: Data Structures & Algorithms/serialize-and-deserialize-binary-tree/submission-0.py
 #
