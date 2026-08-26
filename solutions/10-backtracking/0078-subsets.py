@@ -122,20 +122,20 @@ class Solution:
 # This is the form that GENERALIZES to the rest of the section, so it is the one
 # to have in muscle memory.
 #
-# class Solution:
-#     def subsets(self, nums: List[int]) -> List[List[int]]:
-#         res: List[List[int]] = []
-#         subset: List[int] = []
-#
-#         def dfs(start: int) -> None:
-#             res.append(subset[:])              # EVERY node is an answer
-#             for j in range(start, len(nums)):
-#                 subset.append(nums[j])
-#                 dfs(j + 1)                     # j+1, never start+1
-#                 subset.pop()
-#
-#         dfs(0)
-#         return res
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res: List[List[int]] = []
+        subset: List[int] = []
+
+        def dfs(start: int) -> None:
+            res.append(subset[:])              # EVERY node is an answer
+            for j in range(start, len(nums)):
+                subset.append(nums[j])
+                dfs(j + 1)                     # j+1, never start+1
+                subset.pop()
+
+        dfs(0)
+        return res
 #
 # Two differences from the active version, both of which matter later:
 #
